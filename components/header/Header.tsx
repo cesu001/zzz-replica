@@ -53,36 +53,42 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black overflow-visible">
       <div className="flex items-center h-15 md:h-17 px-4 md:px-65">
         {/* Logo */}
-        <div className="relative shrink-0 flex items-start h-full">
-          {scrolled ? (
-            <Image
-              src="/header/logo.png"
-              alt="Zenless Zone Zero"
-              height={40}
-              width={160}
-              className="h-10 w-auto object-contain"
-              priority
-            />
-          ) : (
-            <>
-              <Image
-                src="/header/logo_large_rwd.png"
-                alt="Zenless Zone Zero"
-                height={96}
-                width={80}
-                className="block md:hidden h-22 w-auto object-contain mt-3"
-                priority
-              />
-              <Image
-                src="/header/logo_large.png"
-                alt="Zenless Zone Zero"
-                height={96}
-                width={80}
-                className="hidden md:block h-40 w-auto object-contain mt-5"
-                priority
-              />
-            </>
-          )}
+        <div
+          className={`relative shrink-0 flex h-full 
+          ${scrolled ? "items-center" : "items-start"}`}
+        >
+          {/* Large logos — absolute so they don't affect flex alignment */}
+          <Image
+            src="/header/logo_large_rwd.png"
+            alt="Zenless Zone Zero"
+            height={96}
+            width={80}
+            className={`block md:hidden absolute top-0 mt-3 h-22 w-auto object-contain origin-top transition-all duration-500 ${
+              scrolled ? "opacity-0 scale-75 pointer-events-none" : "opacity-100 scale-100"
+            }`}
+            priority
+          />
+          <Image
+            src="/header/logo_large.png"
+            alt="Zenless Zone Zero"
+            height={96}
+            width={80}
+            className={`hidden md:block absolute top-0 mt-5 h-40 w-auto object-contain origin-top transition-all duration-500 ${
+              scrolled ? "opacity-0 scale-75 pointer-events-none" : "opacity-100 scale-100"
+            }`}
+            priority
+          />
+          {/* Small logo — in flow, opacity only */}
+          <Image
+            src="/header/logo.png"
+            alt="Zenless Zone Zero"
+            height={40}
+            width={160}
+            className={`h-10 w-auto object-contain mr-6 transition-opacity duration-500 ${
+              scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+            priority
+          />
         </div>
 
         {/* Desktop nav */}
@@ -109,7 +115,11 @@ export default function Header() {
           >
             <button className="w-22 py-1.5 rounded-full text-sm font-extrabold text-center text-gray-400 cursor-pointer flex items-center justify-center gap-1">
               更多
-              <span className={`inline-block transition-transform duration-200 ${moreOpen ? "rotate-180" : "rotate-0"}`}>▾</span>
+              <span
+                className={`inline-block transition-transform duration-200 ${moreOpen ? "rotate-180" : "rotate-0"}`}
+              >
+                ▾
+              </span>
             </button>
             {moreOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1 w-36 bg-[#111111] border-t-4 border-[#c8ff00] rounded-t-sm">
@@ -143,21 +153,42 @@ export default function Header() {
             onMouseLeave={() => setFollowOpen(false)}
           >
             <button className="text-white transition-colors cursor-pointer">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="18" cy="5" r="3" />
+                <circle cx="6" cy="12" r="3" />
+                <circle cx="18" cy="19" r="3" />
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
               </svg>
             </button>
             {followOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1 w-32 bg-[#111111] border-t-4 border-[#c8ff00] rounded-t-sm">
-                <p className="text-white text-sm font-black text-center py-3">追蹤我們</p>
+                <p className="text-white text-sm font-black text-center py-3">
+                  追蹤我們
+                </p>
                 <div className="grid grid-cols-2 gap-y-4 px-4 pb-5">
                   {FOLLOW_ITEMS.map((Icon, i) => (
-                    <a key={i} href="#" className="flex justify-center text-gray-400 hover:text-white transition-colors">
+                    <a
+                      key={i}
+                      href="#"
+                      className="flex justify-center text-gray-400 hover:text-white transition-colors"
+                    >
                       <Icon size={20} />
                     </a>
                   ))}
-                  <a href="#" className="col-span-2 flex justify-center text-gray-400 hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="col-span-2 flex justify-center text-gray-400 hover:text-white transition-colors"
+                  >
                     <Link size={20} />
                   </a>
                 </div>
@@ -166,8 +197,18 @@ export default function Header() {
           </div>
 
           <button className="text-white transition-colors cursor-pointer">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
             </svg>
           </button>
         </div>
