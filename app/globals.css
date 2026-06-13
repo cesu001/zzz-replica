@@ -127,3 +127,18 @@
     @apply font-sans;
     }
 }
+
+@keyframes banner-shake {
+  0%   { transform: scale(1)    rotate(0deg); }
+  50%  { transform: scale(1.12) rotate(0deg); }
+  62%  { transform: scale(1.12) rotate(-4deg); }
+  74%  { transform: scale(1.12) rotate(4deg); }
+  84%  { transform: scale(1.12) rotate(-3deg); }
+  93%  { transform: scale(1.12) rotate(3deg); }
+  100% { transform: scale(1.12) rotate(0deg); }
+}
+
+.download-badge:hover {
+  animation: banner-shake 1s ease-in-out forwards;
+  transform-origin: center;
+}
