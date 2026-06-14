@@ -1,4 +1,4 @@
-const news = [
+export const news = [
   {
     id: "c_01",
     date: "2026-06-13",
@@ -27,7 +27,7 @@ const news = [
     id: "c_05",
     date: "2026-06-12",
     title: "維琳娜角色展示｜茶會一如既往",
-    image: "/carousel/p05.jpg",
+    image: "/carousel/p05.png",
   },
   {
     id: "c_06",
