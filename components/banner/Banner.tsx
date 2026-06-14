@@ -34,7 +34,7 @@ export default function Banner() {
   return (
     <>
       {/* mt-15 / mt-17 clears the fixed header */}
-      <section className="bg-neutral-200/50 w-full mt-15 md:mt-10">
+      <section className="bg-neutral-100 w-full mt-15 md:mt-10">
         {/* Desktop: left gap matches header's md:px-65; mobile: full-width */}
         <div className="relative md:mx-60">
           {/* Background banner image — natural size, no cropping */}
