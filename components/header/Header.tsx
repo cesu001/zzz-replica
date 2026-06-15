@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Link } from "lucide-react";
+import { ArrowUpRight, Link, Menu, X } from "lucide-react";
 import {
   FaXTwitter,
   FaYoutube,
@@ -42,6 +42,17 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [followOpen, setFollowOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [mobileNavVisible, setMobileNavVisible] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
+
+  useEffect(() => {
+    if (mobileNavOpen) {
+      requestAnimationFrame(() => setMobileNavVisible(true));
+    }
+  }, [mobileNavOpen]);
+
+  const closeNav = () => setMobileNavVisible(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
@@ -51,7 +62,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black overflow-visible">
-      <div className="flex items-center h-15 md:h-17 px-4 md:px-65">
+      <div className="flex items-center h-15 lg:h-17 px-4 lg:px-10 xl:px-65">
         {/* Logo */}
         <div
           className={`relative shrink-0 flex h-full 
@@ -63,8 +74,10 @@ export default function Header() {
             alt="Zenless Zone Zero"
             height={96}
             width={80}
-            className={`block md:hidden absolute top-0 mt-3 h-22 w-auto object-contain origin-top transition-all duration-500 ${
-              scrolled ? "opacity-0 scale-75 pointer-events-none" : "opacity-100 scale-100"
+            className={`block lg:hidden absolute top-0 mt-3 h-22 w-auto object-contain origin-top transition-all duration-500 ${
+              scrolled
+                ? "opacity-0 scale-75 pointer-events-none"
+                : "opacity-100 scale-100"
             }`}
             priority
           />
@@ -73,8 +86,10 @@ export default function Header() {
             alt="Zenless Zone Zero"
             height={96}
             width={80}
-            className={`hidden md:block absolute top-0 mt-5 h-40 w-auto object-contain origin-top transition-all duration-500 ${
-              scrolled ? "opacity-0 scale-75 pointer-events-none" : "opacity-100 scale-100"
+            className={`hidden lg:block absolute top-0 mt-5 h-40 w-auto object-contain origin-top transition-all duration-500 ${
+              scrolled
+                ? "opacity-0 scale-75 pointer-events-none"
+                : "opacity-100 scale-100"
             }`}
             priority
           />
@@ -92,7 +107,7 @@ export default function Header() {
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center h-full gap-5 ml-1">
+        <nav className="hidden lg:flex items-center h-full gap-5 ml-1">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.label}
@@ -141,8 +156,8 @@ export default function Header() {
         <div className="flex-1" />
 
         {/* Desktop right */}
-        <div className="hidden md:flex items-center h-full gap-12">
-          <button className="bg-[#c8ff00] text-black font-extrabold px-5 py-1.5 rounded-full text-sm hover:brightness-110 transition-all cursor-pointer">
+        <div className="hidden lg:flex items-center h-full gap-12">
+          <button className="shrink-0 bg-[#c8ff00] text-black font-extrabold px-5 py-1.5 rounded-full text-sm hover:brightness-110 transition-all cursor-pointer">
             立即下載
           </button>
 
@@ -214,7 +229,7 @@ export default function Header() {
         </div>
 
         {/* Mobile right */}
-        <div className="flex md:hidden items-center">
+        <div className="flex hover:cursor-pointer lg:hidden items-center">
           <Image
             src="/header/download_rwd.png"
             alt="立即下載"
@@ -223,6 +238,92 @@ export default function Header() {
             className="h-9 w-auto object-contain"
           />
         </div>
+        <button
+          onClick={() => setMobileNavOpen(true)}
+          className="rounded-xl fixed right-4 top-24 lg:hidden w-18 h-18 bg-black p-3 flex justify-center items-center cursor-pointer"
+          aria-label="Open menu"
+        >
+          <Menu size={40} className="text-white" />
+        </button>
+      </div>
+
+      {/* Mobile nav overlay — always mounted, visibility driven by mobileNavVisible */}
+      <div
+        className={`fixed top-0 left-0 right-0 min-h-[50vh] z-200 bg-[#111111] flex flex-col lg:hidden transition-[opacity,clip-path] duration-350 ease-in-out ${
+          mobileNavVisible
+            ? "opacity-100 [clip-path:inset(0_0_0%_0)] pointer-events-auto"
+            : "opacity-0 [clip-path:inset(0_0_100%_0)] pointer-events-none"
+        }`}
+        onTransitionEnd={(e) => {
+          if (e.propertyName === "opacity" && !mobileNavVisible) {
+            setMobileNavOpen(false);
+          }
+        }}
+      >
+        {mobileNavOpen ? (
+          <>
+            {/* Top row — X button only */}
+            <div className="flex items-center justify-end px-6 pt-4 pb-2">
+              <button
+                onClick={closeNav}
+                className="w-14 h-14 rounded-2xl bg-neutral-800 flex items-center justify-center cursor-pointer"
+                aria-label="Close menu"
+              >
+                <X size={24} className="text-white" />
+              </button>
+            </div>
+
+            {/* Nav items */}
+            <nav className="flex-1 flex flex-col items-center justify-center gap-2">
+              {NAV_ITEMS.map((item) => (
+                <button
+                  key={item.label}
+                  className={`w-10/12 py-4 rounded-full text-xl font-bold text-center cursor-pointer transition-colors ${
+                    item.active ? "bg-white/15 text-white" : "text-neutral-400"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+
+              {/* 更多 sub-dropdown */}
+              <div className="w-10/12">
+                <button
+                  onClick={() => setMobileMoreOpen((o) => !o)}
+                  className="w-full py-4 text-neutral-400 text-xl font-bold flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  更多
+                  <span
+                    className={`transition-transform duration-200 ${mobileMoreOpen ? "rotate-180" : "rotate-0"}`}
+                  >
+                    ▾
+                  </span>
+                </button>
+                <div
+                  className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${mobileMoreOpen ? "max-h-40" : "max-h-0"}`}
+                >
+                  {MORE_ITEMS.map((label) => (
+                    <a
+                      key={label}
+                      href="#"
+                      className="flex items-center justify-center gap-2 py-2 text-neutral-400 hover:text-white transition-colors text-base"
+                    >
+                      {label}
+                      <ArrowUpRight size={15} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </nav>
+
+            {/* Bottom login */}
+            <div className="mt-5 px-6 pb-10">
+              <button className="w-full py-4 rounded-full bg-[#c8ff00] text-black font-extrabold text-xl cursor-pointer">
+                登入
+              </button>
+            </div>
+          </>
+        ) : null}
       </div>
     </header>
   );

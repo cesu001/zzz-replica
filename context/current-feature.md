@@ -1,22 +1,30 @@
-# Current Feature
+# Current Feature: RWD Fix — Header & Banner Mid-Viewport Scaling
 
 ## Status
 
 <!-- Not Started|In Progress|Completed -->
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Bullet points of what success looks like -->
+- Desktop layout (large screens, ~xl/1280px+) and mobile layout (~md/768px and below) remain exactly as-is
+- At intermediate viewport widths (768px–1280px), the header and banner scale gracefully without overflow, collision, or jarring layout jumps
+- Header: `px-65` desktop padding scales down at mid-widths so the nav items aren't crushed or clipped
+- Header: nav items, logo, and right-side controls remain properly spaced at all widths between mobile and desktop
+- Banner: `md:mx-60` left margin scales proportionally at mid-widths so the image isn't awkwardly offset
+- Banner: absolute-positioned elements (play button, download badge, platform icons, leftOver image) stay within bounds at mid-widths
+- No change to the desktop breakpoint visual and no change to the mobile breakpoint visual
 
 ## Notes
 
-<!-- Additional context, constraints, or details -->
+- Current breakpoint is `md` (768px) for switching between mobile and desktop layouts — this is the target to keep
+- Header desktop padding is `md:px-65` (260px horizontal) — needs intermediate step(s)
+- Banner desktop left margin is `md:mx-60` (240px) — needs intermediate step(s)
+- Keep all existing behavior: scroll-aware logo swap, dropdowns, YouTube modal, download badge hover animation
+- Only adjust spacing/layout classes; do not restructure the component hierarchy
 
 ## History
-
-<!-- Keep this updated. Earliest to latest -->
 
 - **Project Setup** — Installed shadcn/ui (Tailwind v4), lucide-react, and react-icons to bootstrap the ZZZ replica project.
 - **Phase 01 — Header** — Fixed navbar with scroll-aware logo swap (large→small), desktop nav with hover/active effects and 更多/追蹤我們 dropdowns, mobile RWD layout with logo and download button only.

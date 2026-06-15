@@ -21,6 +21,7 @@ const NewsCarousel = () => {
 
   return (
     <div
+      id="section-news"
       ref={sectionRef}
       className="relative w-full min-h-[75vw] md:min-h-screen bg-v-stripes bg-size-[20px_20px] overflow-hidden"
     >
@@ -46,7 +47,7 @@ const NewsCarousel = () => {
       >
         <div className="absolute top-1/2 right-[20vw] md:top-5/12 md:left-2/3 transform -translate-x-1/2 -translate-y-1/2 text-black font-extrabold">
           <h1
-            className={`text-[4.7vw] md:text-5xl pt-[0.3vw] md:pt-5 transition-all duration-700 delay-200 ${
+            className={`whitespace-nowrap text-[4.7vw] md:text-5xl pt-[0.3vw] md:pt-5 transition-all duration-700 delay-200 ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-16"
             }`}
           >

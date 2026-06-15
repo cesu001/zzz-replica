@@ -60,6 +60,7 @@ const Character = () => {
 
   return (
     <div
+      id="section-character"
       ref={sectionRef}
       className="relative w-full min-h-[75vw] md:min-h-[120vh] bg-v-stripes bg-size-[20px_20px] overflow-hidden"
     >
@@ -122,7 +123,7 @@ const Character = () => {
       {/* Character carousel — client-only */}
       {mounted && (
         <div className="z-24 absolute top-[80%] left-0 right-0 bottom-0 flex items-center justify-center pointer-events-none">
-          <div className="relative w-[37.5vw] pointer-events-auto rounded-full bg-neutral-800 py-[0.94vw]">
+          <div className="relative w-[50vw] md:w-[37.5vw] pointer-events-auto rounded-full bg-neutral-800 py-[0.94vw]">
             <Carousel
               opts={{ slidesToScroll: 3 }}
               className="w-full px-[5.5vw]"
