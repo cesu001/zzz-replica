@@ -45,7 +45,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative w-full bg-black text-white border-t border-gray-800">
+    <footer id="section-footer" className="relative w-full bg-black text-white border-t border-gray-800">
       {/* Go-to-top tag — absolute, hangs down from top border */}
       <button
         onClick={scrollToTop}
