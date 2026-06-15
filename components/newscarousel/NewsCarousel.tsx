@@ -32,7 +32,7 @@ const NewsCarousel = () => {
       </div>
       <div
         className="z-20 absolute inset-0 bg-white"
-        style={{ clipPath: "polygon(0% 0%, 60% 0%, 30% 100%, 0% 100%)" }}
+        style={{ clipPath: "polygon(0% 0%, 62.5% 0%, 30% 100%, 0% 100%)" }}
       />
       <div
         className={`z-30 absolute top-[30%] md:top-[30%] left-0 md:left-[20%] w-[50%] md:w-[35%] transition-all duration-700 delay-300 ${
@@ -43,7 +43,7 @@ const NewsCarousel = () => {
       </div>
       <div
         className="z-20 absolute inset-0 bg-white"
-        style={{ clipPath: "polygon(0% 30%, 80% 30%, 60% 80%, 0% 80%)" }}
+        style={{ clipPath: "polygon(0% 30%, 80% 30%, 62.5% 80%, 0% 80%)" }}
       >
         <div className="absolute top-1/2 right-[20vw] md:top-5/12 md:left-2/3 transform -translate-x-1/2 -translate-y-1/2 text-black font-extrabold">
           <h1
@@ -71,7 +71,9 @@ const NewsCarousel = () => {
       </div>
       <div
         className="z-20 absolute inset-0 bg-white"
-        style={{ clipPath: "polygon(100% 30%, 100% 30%, 100% 80%,  80% 80%)" }}
+        style={{
+          clipPath: "polygon(100% 30%, 100% 30%, 100% 80%,  82.5% 80%)",
+        }}
       />
       <button className="w-1/3 z-31 absolute bottom-15 right-4 md:hidden hover:cursor-pointer rounded-4xl flex justify-around items-center gap-0.5 font-medium border-4 border-gray-600 hover:border-black px-3 py-1 bg-black hover:bg-white text-white hover:text-black transition-colors">
         <span>查看更多</span>
