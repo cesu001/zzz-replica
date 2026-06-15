@@ -34,7 +34,10 @@ export default function Banner() {
   return (
     <>
       {/* mt-15 / mt-17 clears the fixed header */}
-      <section id="section-banner" className="bg-neutral-100 w-full lg:max-h-screen mt-15 lg:mt-10">
+      <section
+        id="section-banner"
+        className="bg-neutral-100 w-full lg:max-h-[120vh] mt-15 lg:mt-10"
+      >
         {/* Desktop: left gap matches header's lg:px-10 xl:px-65; mobile/tablet: full-width */}
         <div className="relative lg:mx-50 xl:mx-60">
           {/* Background banner image — natural size, no cropping */}
@@ -156,7 +159,11 @@ export default function Banner() {
           onClick={(e) => e.stopPropagation()}
         >
           <iframe
-            src={modalOpen ? "https://www.youtube.com/embed/5SQ3fC2urZg?autoplay=1" : undefined}
+            src={
+              modalOpen
+                ? "https://www.youtube.com/embed/5SQ3fC2urZg?autoplay=1"
+                : undefined
+            }
             title="Zenless Zone Zero PV"
             allow="autoplay; encrypted-media"
             allowFullScreen

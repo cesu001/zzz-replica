@@ -62,7 +62,7 @@ const Character = () => {
     <div
       id="section-character"
       ref={sectionRef}
-      className="relative w-full min-h-[75vw] md:min-h-[120vh] bg-v-stripes bg-size-[20px_20px] overflow-hidden"
+      className="relative w-full min-h-[75vw] lg:min-h-[120vh] bg-v-stripes bg-size-[20px_20px] overflow-hidden"
     >
       {/* White top band */}
       <div className="absolute top-0 left-0 w-full h-[10vw] bg-neutral-100" />
@@ -87,7 +87,7 @@ const Character = () => {
       >
         <div className="absolute top-2/5 left-[8vw] md:left-[15vw] text-black font-extrabold">
           <h1
-            className={`text-[4.7vw] md:text-5xl pt-[0.3vw] md:pt-5 transition-all duration-700 delay-200 ${
+            className={`text-[4.7vw] md:text-4xl lg:text-5xl pt-[0.3vw] md:pt-5 transition-all duration-700 delay-200 ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
@@ -101,7 +101,7 @@ const Character = () => {
             CHARACTERS
           </p>
           <p
-            className={`text-[11.7vw] md:text-8xl transition-all duration-700 delay-[800ms] ${
+            className={`text-[11.7vw] md:text-6xl lg:text-8xl transition-all duration-700 delay-[800ms] ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
@@ -112,7 +112,7 @@ const Character = () => {
 
       {/* Watermark name */}
       <div
-        className={`absolute top-[20vw] left-0 w-full text-[25vw] font-bold text-neutral-600/50 leading-none translate-y-[-12%] ${charClsFar}`}
+        className={`absolute top-[20vw] left-0 w-full text-[25vw] md:text-[17vw] font-bold text-neutral-600/50 leading-none translate-y-[-12%] ${charClsFar}`}
       >
         {activeChar.name_en}
       </div>

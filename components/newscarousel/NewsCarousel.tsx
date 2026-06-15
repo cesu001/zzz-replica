@@ -23,7 +23,7 @@ const NewsCarousel = () => {
     <div
       id="section-news"
       ref={sectionRef}
-      className="relative w-full min-h-[75vw] md:min-h-screen bg-v-stripes bg-size-[20px_20px] overflow-hidden"
+      className="relative w-full min-h-[75vw] lg:min-h-screen bg-v-stripes bg-size-[20px_20px] overflow-hidden"
     >
       <div className="z-5 absolute top-0 left-0 w-full h-[10vw] bg-black flex flex-nowrap justify-around items-center gap-[1.25vw]">
         {Array.from({ length: 12 }).map((_, i) => (
@@ -47,7 +47,7 @@ const NewsCarousel = () => {
       >
         <div className="absolute top-1/2 right-[20vw] md:top-5/12 md:left-2/3 transform -translate-x-1/2 -translate-y-1/2 text-black font-extrabold">
           <h1
-            className={`whitespace-nowrap text-[4.7vw] md:text-5xl pt-[0.3vw] md:pt-5 transition-all duration-700 delay-200 ${
+            className={`whitespace-nowrap text-[4.7vw] md:text-4xl lg:text-5xl pt-[0.3vw] md:pt-5 transition-all duration-700 delay-200 ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-16"
             }`}
           >
@@ -61,7 +61,7 @@ const NewsCarousel = () => {
             NEWS & INFO
           </p>
           <p
-            className={`text-[11.7vw] md:text-8xl transition-all duration-700 delay-[800ms] ${
+            className={`text-[11.7vw] md:text-6xl lg:text-8xl transition-all duration-700 delay-[800ms] ${
               visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-16"
             }`}
           >
